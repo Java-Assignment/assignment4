@@ -9,11 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @Slf4j
-public class CustomerEnrichmentServiceImpl implements CustomerEnrichmentService{
+public class CustomerEnrichmentServiceImpl implements CustomerEnrichmentService {
     @Autowired
     private CustomerEnrichmentRepo customerEnrichmentRepo;
     @Autowired
@@ -22,20 +20,19 @@ public class CustomerEnrichmentServiceImpl implements CustomerEnrichmentService{
 
     @Override
     public CustomerResponse getByCustomerName(String customerName) throws AppAccountNotFoundException {
-        if(customerName!=null){
+        if (customerName != null) {
             log.info(customerName);
-           CustomerEnrichment customerEnrichment=customerEnrichmentRepo.findByCustomerName(customerName);
-           CustomerResponse customerResponse=customerEnrichmentMapper.ConverCetoCr(customerEnrichment);
-           return  customerResponse;
-        }
-        else {
-            throw new AppAccountNotFoundException("Missing account. AC : "+customerName);
+            CustomerEnrichment customerEnrichment = customerEnrichmentRepo.findByCustomerName(customerName);
+            CustomerResponse customerResponse = customerEnrichmentMapper.ConverCetoCr(customerEnrichment);
+            return customerResponse;
+        } else {
+            throw new AppAccountNotFoundException("Missing account. AC : " + customerName);
         }
     }
 
     @Override
     public CustomerEnrichment add(CustomerEnrichment cus) {
-        CustomerEnrichment customerEnrichment=customerEnrichmentRepo.save(cus);
+        CustomerEnrichment customerEnrichment = customerEnrichmentRepo.save(cus);
         return customerEnrichment;
     }
 }

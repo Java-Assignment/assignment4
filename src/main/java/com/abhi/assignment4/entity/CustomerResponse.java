@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 public class CustomerResponse {
     private String customerName;
     private int age;
-    private String relationship ;
-    private  String address;
+    private String relationship;
+    private String address;
 }

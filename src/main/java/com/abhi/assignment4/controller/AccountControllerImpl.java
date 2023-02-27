@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class AccountControllerImpl implements AccountController{
+public class AccountControllerImpl implements AccountController {
     @Autowired
     private CustomerEnrichmentService customerEnrichmentService;
 
     @Override
     public ResponseEntity<CustomerResponse> getCustomerEnrichment(String customerName) throws AppAccountNotFoundException {
-        CustomerResponse cr=customerEnrichmentService.getByCustomerName(customerName);
-        return new ResponseEntity<>(cr,HttpStatus.OK);
+        CustomerResponse cr = customerEnrichmentService.getByCustomerName(customerName);
+        return new ResponseEntity<>(cr, HttpStatus.OK);
     }
 }

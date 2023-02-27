@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 @Slf4j
 public class AppExceptionHandler {
-    @ExceptionHandler(value=AppAccountNotFoundException.class)
-    public ResponseEntity<String>handleException(AppAccountNotFoundException exception){
+    @ExceptionHandler(value = AppAccountNotFoundException.class)
+    public ResponseEntity<String> handleException(AppAccountNotFoundException exception) {
         log.error(exception.getMessage());
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }

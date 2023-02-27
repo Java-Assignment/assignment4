@@ -1,7 +1,6 @@
 package com.abhi.assignment4;
 
 import com.abhi.assignment4.entity.CustomerEnrichment;
-import com.abhi.assignment4.entity.CustomerResponse;
 import com.abhi.assignment4.entity.Relationship;
 import com.abhi.assignment4.repo.CustomerEnrichmentRepo;
 import com.abhi.assignment4.service.CustomerEnrichmentService;
@@ -20,8 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.ArrayList;
-import java.util.List;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
@@ -43,8 +40,8 @@ public class TestCustomerEnrichment {
     CustomerEnrichmentService customerEnrichmentService;
 
     @BeforeEach
-    void Setup(){
-        testAddAc= new CustomerEnrichment();
+    void Setup() {
+        testAddAc = new CustomerEnrichment();
 //        testAddAc.add(new CustomerEnrichment("000000000001","abcd",23,Relationship.UNMARRIED,"sector 23,s appartments,gurgaon"));
         testAddAc.setCustomerID("000000000001");
         testAddAc.setCustomerName("abcd");
@@ -62,36 +59,36 @@ public class TestCustomerEnrichment {
         testAddAc2.setCustomerName("abcd2");
         testAddAc2.setAge(30);
         testAddAc2.setRelationship(Relationship.MARRIED);
-        testAddAc2.setAddress("bangalore");;
+        testAddAc2.setAddress("bangalore");
+        ;
 
 
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
 
-
-
     }
+
     @Test
     @DisplayName("Add customer accounts")
     void AddCustomerAccount() throws Exception {
-        CustomerEnrichment c=customerEnrichmentService.add(testAddAc);
+        CustomerEnrichment c = customerEnrichmentService.add(testAddAc);
         customerEnrichmentService.add(testAddAc1);
         customerEnrichmentService.add(testAddAc2);
-        String custname= c.getCustomerName();
-        MvcResult mvcResult=mockMvc.perform(
-                MockMvcRequestBuilders.get("/customerDetails"+"/"+custname)
-                      .contentType(MediaType.APPLICATION_JSON_VALUE)
-                      .accept(MediaType.APPLICATION_JSON_VALUE)
-        )
+        String custname = c.getCustomerName();
+        MvcResult mvcResult = mockMvc.perform(
+                        MockMvcRequestBuilders.get("/customerDetails" + "/" + custname)
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .accept(MediaType.APPLICATION_JSON_VALUE)
+                )
                 .andDo(print())
                 .andReturn();
-        String contentAsString=mvcResult.getResponse().getContentAsString();
-        CustomerEnrichment customerEnrichment=objectMapper.readValue(contentAsString,CustomerEnrichment.class);
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        CustomerEnrichment customerEnrichment = objectMapper.readValue(contentAsString, CustomerEnrichment.class);
 
 
         Assertions.assertAll(
-                ()->Assertions.assertEquals(testAddAc.getCustomerName(),customerEnrichment.getCustomerName())
+                () -> Assertions.assertEquals(testAddAc.getCustomerName(), customerEnrichment.getCustomerName())
 
         );
 
