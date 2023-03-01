@@ -1,11 +1,11 @@
-package com.abhi.assignment4.entity;
+package com.abhi.assignment4.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CustomerResponse {
+public class CustomerDTO {
     private String customerName;
     private int age;
     private String relationship;
