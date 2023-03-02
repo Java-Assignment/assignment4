@@ -18,5 +18,5 @@ public interface AccountController {
 
     @GetMapping("/{customerName}")
     @Operation(summary = "To get customer details based on name")
-    ResponseEntity<CustomerDTO> getCustomerEnrichment(@PathVariable(value = "customerName") String customerName) throws AppAccountNotFoundException;
+    ResponseEntity<CustomerDTO> getCustomer(@PathVariable(value = "customerName") String customerName) throws AppAccountNotFoundException;
 }

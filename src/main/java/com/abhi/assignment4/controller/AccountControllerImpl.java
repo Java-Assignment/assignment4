@@ -16,7 +16,7 @@ public class AccountControllerImpl implements AccountController {
     private CustomerService customerService;
 
     @Override
-    public ResponseEntity<CustomerDTO> getCustomerEnrichment(String customerName) throws AppAccountNotFoundException {
+    public ResponseEntity<CustomerDTO> getCustomer(String customerName) throws AppAccountNotFoundException {
         CustomerDTO cr = customerService.getByCustomerName(customerName);
         return new ResponseEntity<>(cr, HttpStatus.OK);
     }
