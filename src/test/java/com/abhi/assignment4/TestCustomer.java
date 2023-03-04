@@ -34,33 +34,33 @@ public class TestCustomer {
     @Autowired
     MockMvc mockMvc;
 
-    private Customer testAddAc;
-    private Customer testAddAc1;
-    private Customer testAddAc2;
+    private Customer testAddCustomer1;
+    private Customer testAddCustomer2;
+    private Customer testAddCustomer3;
     @Autowired
     CustomerService customerService;
 
     @BeforeEach
     void Setup() {
-        testAddAc = new Customer();
+        testAddCustomer1 = new Customer();
 //        testAddAc.add(new CustomerEnrichment("000000000001","abcd",23,Relationship.UNMARRIED,"sector 23,s appartments,gurgaon"));
-        testAddAc.setCustomerID("000000000001");
-        testAddAc.setCustomerName("abcd");
-        testAddAc.setAge(23);
-        testAddAc.setRelationship(Relationship.ACTIVE);
-        testAddAc.setAddress("sector 23,s appartments,gurgaon");
-        testAddAc1 = new Customer();
-        testAddAc1.setCustomerID("000000000002");
-        testAddAc1.setCustomerName("abcd1");
-        testAddAc1.setAge(22);
-        testAddAc1.setRelationship(Relationship.INACTIVE);
-        testAddAc1.setAddress("rourkela");
-        testAddAc2 = new Customer();
-        testAddAc2.setCustomerID("000000000003");
-        testAddAc2.setCustomerName("abcd2");
-        testAddAc2.setAge(30);
-        testAddAc2.setRelationship(Relationship.ACTIVE);
-        testAddAc2.setAddress("bangalore");
+        testAddCustomer1.setCustomerID("Cust1");
+        testAddCustomer1.setCustomerName("Test User1");
+        testAddCustomer1.setAge(23);
+        testAddCustomer1.setRelationship(Relationship.ACTIVE);
+        testAddCustomer1.setAddress("sector 23,s appartments,gurgaon");
+        testAddCustomer2 = new Customer();
+        testAddCustomer2.setCustomerID("000000000002");
+        testAddCustomer2.setCustomerName("abcd1");
+        testAddCustomer2.setAge(22);
+        testAddCustomer2.setRelationship(Relationship.INACTIVE);
+        testAddCustomer2.setAddress("rourkela");
+        testAddCustomer3 = new Customer();
+        testAddCustomer3.setCustomerID("000000000003");
+        testAddCustomer3.setCustomerName("abcd2");
+        testAddCustomer3.setAge(30);
+        testAddCustomer3.setRelationship(Relationship.ACTIVE);
+        testAddCustomer3.setAddress("bangalore");
 
 
         objectMapper = new ObjectMapper();
@@ -72,9 +72,9 @@ public class TestCustomer {
     @Test
     @DisplayName("Add customer accounts")
     void AddCustomerAccount() throws Exception {
-        CustomerDTO c = customerService.add(testAddAc);
-        customerService.add(testAddAc1);
-        customerService.add(testAddAc2);
+        CustomerDTO c = customerService.add(testAddCustomer1);
+        customerService.add(testAddCustomer2);
+        customerService.add(testAddCustomer3);
         String custname = c.getCustomerName();
         MvcResult mvcResult = mockMvc.perform(
                         MockMvcRequestBuilders.get("/customer" + "/" + custname)
@@ -88,7 +88,7 @@ public class TestCustomer {
 
 
         Assertions.assertAll(
-                () -> Assertions.assertEquals(testAddAc.getCustomerName(), customerDTO.getCustomerName())
+                () -> Assertions.assertEquals(testAddCustomer1.getCustomerName(), customerDTO.getCustomerName())
 
         );
 
