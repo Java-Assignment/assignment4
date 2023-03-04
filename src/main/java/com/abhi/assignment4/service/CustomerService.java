@@ -7,5 +7,7 @@ import com.abhi.assignment4.save.entity.Customer;
 public interface CustomerService {
     CustomerDTO getByCustomerName(String customerName) throws AppAccountNotFoundException;
 
+    void DeleteAll();
+
     CustomerDTO add(Customer cus);
 }

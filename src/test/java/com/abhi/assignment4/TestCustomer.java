@@ -30,7 +30,6 @@ public class TestCustomer {
     @Autowired
     CustomerRepo customerRepo;
     private ObjectMapper objectMapper;
-
     @Autowired
     MockMvc mockMvc;
 
@@ -42,22 +41,22 @@ public class TestCustomer {
 
     @BeforeEach
     void Setup() {
+        customerRepo.deleteAll();
         testAddCustomer1 = new Customer();
-//        testAddAc.add(new CustomerEnrichment("000000000001","abcd",23,Relationship.UNMARRIED,"sector 23,s appartments,gurgaon"));
         testAddCustomer1.setCustomerID("Cust1");
         testAddCustomer1.setCustomerName("Test User1");
         testAddCustomer1.setAge(23);
         testAddCustomer1.setRelationship(Relationship.ACTIVE);
         testAddCustomer1.setAddress("sector 23,s appartments,gurgaon");
         testAddCustomer2 = new Customer();
-        testAddCustomer2.setCustomerID("000000000002");
-        testAddCustomer2.setCustomerName("abcd1");
+        testAddCustomer2.setCustomerID("Cust2");
+        testAddCustomer2.setCustomerName("Test User2");
         testAddCustomer2.setAge(22);
         testAddCustomer2.setRelationship(Relationship.INACTIVE);
         testAddCustomer2.setAddress("rourkela");
         testAddCustomer3 = new Customer();
-        testAddCustomer3.setCustomerID("000000000003");
-        testAddCustomer3.setCustomerName("abcd2");
+        testAddCustomer3.setCustomerID("Cust3");
+        testAddCustomer3.setCustomerName("Test User3");
         testAddCustomer3.setAge(30);
         testAddCustomer3.setRelationship(Relationship.ACTIVE);
         testAddCustomer3.setAddress("bangalore");

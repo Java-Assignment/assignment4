@@ -18,6 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerMapper customerMapper;
 
 
+
     @Override
     public CustomerDTO getByCustomerName(String customerName) throws AppAccountNotFoundException {
         if (customerName != null) {
@@ -27,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
         } else {
             throw new AppAccountNotFoundException("Missing account. AC : " + customerName);
         }
+    }
+
+    @Override
+    public void DeleteAll() {
+        customerRepo.deleteAll();
     }
 
     @Override
