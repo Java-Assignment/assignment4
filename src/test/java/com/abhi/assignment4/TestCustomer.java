@@ -36,6 +36,9 @@ public class TestCustomer {
     private Customer testAddCustomer1;
     private Customer testAddCustomer2;
     private Customer testAddCustomer3;
+    private Customer testAddCustomer4;
+    private Customer testAddCustomer5;
+
     @Autowired
     CustomerService customerService;
 
@@ -60,6 +63,19 @@ public class TestCustomer {
         testAddCustomer3.setAge(30);
         testAddCustomer3.setRelationship(Relationship.ACTIVE);
         testAddCustomer3.setAddress("bangalore");
+        testAddCustomer4 = new Customer();
+        testAddCustomer4.setCustomerID("Cust4");
+        testAddCustomer4.setCustomerName("Test User4");
+        testAddCustomer4.setAge(23);
+        testAddCustomer4.setRelationship(Relationship.ACTIVE);
+        testAddCustomer4.setAddress("sector 23,s appartments,delhi");
+        testAddCustomer5 = new Customer();
+        testAddCustomer5.setCustomerID("Cust5");
+        testAddCustomer5.setCustomerName("Test User5");
+        testAddCustomer5.setAge(23);
+        testAddCustomer5.setRelationship(Relationship.ACTIVE);
+        testAddCustomer5.setAddress("s appartments,delhi");
+
 
 
         objectMapper = new ObjectMapper();
@@ -74,6 +90,8 @@ public class TestCustomer {
         CustomerDTO c = customerService.add(testAddCustomer1);
         customerService.add(testAddCustomer2);
         customerService.add(testAddCustomer3);
+        customerService.add(testAddCustomer4);
+        customerService.add(testAddCustomer5);
         String custname = c.getCustomerName();
         MvcResult mvcResult = mockMvc.perform(
                         MockMvcRequestBuilders.get("/customer" + "/" + custname)
