@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/customer", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 @Validated
 @Tag(name = "customer api", description = "api operations on customer")
-public interface AccountController {
+public interface CustomerAccountController {
 
     @GetMapping("/{customerName}")
     @Operation(summary = "To get customer details based on name")

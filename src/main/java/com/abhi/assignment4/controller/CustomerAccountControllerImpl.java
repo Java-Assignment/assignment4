@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class AccountControllerImpl implements AccountController {
+public class CustomerAccountControllerImpl implements CustomerAccountController {
     @Autowired
     private CustomerService customerService;
 
